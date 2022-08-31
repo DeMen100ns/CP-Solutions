@@ -1,0 +1,59 @@
+{145 div 2, c}
+const
+    fi = 'input.txt';
+    fo = 'output.txt';
+ 
+var t: array[1..100000] of longint;
+    n, min, l, r: longint;
+ 
+procedure nhap;
+var f: text;
+    i: longint;
+begin
+    assign(f, fi);
+    reset(f);
+    readln(f, n);
+    r := 0;
+    l := 0;
+    for i := 1 to n do
+    begin
+        read(f, t[i]);
+        if (t[i] <= 0) then inc(r);
+    end;
+    close(f);
+end;
+ 
+{-1 0 -1 -1 1 2 -5}
+ 
+procedure xuli;
+var i: longint;
+begin
+    min := 1000000;
+    for i := 1 to n-1 do
+    begin
+        if (t[i] < 0) then dec(r)
+        else if (t[i] > 0) then inc(l)
+        else
+        begin
+            inc(l);
+            dec(r);
+        end;
+        if (min > l + r) then min := l + r;
+    end;
+end;
+ 
+procedure xuat;
+var i, x: integer;
+    f: text;
+begin
+    assign(f, fo);
+    rewrite(f);
+    write(f, min);
+    close(f);
+end;
+ 
+begin
+    nhap;
+    xuli;
+    xuat;
+end.
