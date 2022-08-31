@@ -1,0 +1,37 @@
+{145 div 2, a}
+const
+    fi = 'input.txt';
+    fo = 'output.txt';
+ 
+var s: string;
+    n: integer;
+ 
+procedure nhap;
+var f: text;
+begin
+    assign(f, fi);
+    reset(f);
+    readln(f, n);
+    readln(f, s);
+    close(f);
+end;
+ 
+procedure xuat;
+var i, j: integer;
+    f: text;
+begin
+    assign(f, fo);
+    rewrite(f);
+    j := n div 2;
+    for i := 1 to j do
+    begin
+        if (s[i] = 'R') and (s[j + i] = 'L') then
+            writeln(f, j+i, ' ', i)
+        else writeln(f, i, ' ', j+i);
+    end;
+    close(f);
+end;
+begin
+    nhap;
+    xuat;
+end.
